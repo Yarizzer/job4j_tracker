@@ -1,0 +1,18 @@
+package ru.job4j.oop;
+
+public class Battery {
+    private int load;
+
+    public int getLoad() {
+        return load;
+    }
+
+    void exchange(Battery another) {
+        another.load += this.getLoad();
+        this.load = 0;
+    }
+
+    public Battery(int load) {
+        this.load = load;
+    }
+}
