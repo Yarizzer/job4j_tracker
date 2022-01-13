@@ -2,16 +2,8 @@ package ru.job4j.oop;
 
 public class Computer {
     private boolean multiMonitor;
-
     private int ssd;
-
     private String cpu;
-
-    public void printInfo() {
-        System.out.println("Много мониторов: " + multiMonitor);
-        System.out.println("SSD: " + ssd + " GB");
-        System.out.println("Модель CPU: " + cpu);
-    }
 
     public Computer() {
     }
@@ -20,6 +12,12 @@ public class Computer {
         this.multiMonitor = multiMonitor;
         this.ssd = ssd;
         this.cpu = cp;
+    }
+
+    public void printInfo() {
+        System.out.println("Много мониторов: " + multiMonitor);
+        System.out.println("SSD: " + ssd + " GB");
+        System.out.println("Модель CPU: " + cpu);
     }
 
     public static void main(String[] args) {
