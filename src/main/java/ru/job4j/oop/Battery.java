@@ -12,7 +12,7 @@ public class Battery {
     }
 
     void exchange(Battery another) {
-        another.load += this.getLoad();
+        another.load += this.load;
         this.load = 0;
     }
 }
