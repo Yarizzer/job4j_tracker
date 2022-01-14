@@ -43,4 +43,20 @@ public class PointTest {
         double out = sut.distance(new Point(2, 2));
         Assert.assertEquals(expected, out, 0.01);
     }
+
+    @Test
+    public void when020to212then2p23() {
+        double expected = 2.23;
+        Point sut = new Point(0, 2, 0);
+        double out = sut.distance(new Point(2, 1, 2));
+        Assert.assertEquals(expected, out, 0.01);
+    }
+
+    @Test
+    public void when010to333then3p60() {
+        double expected = 3.60;
+        Point sut = new Point(0, 1, 0);
+        double out = sut.distance(new Point(3, 3, 3));
+        Assert.assertEquals(expected, out, 0.01);
+    }
 }
