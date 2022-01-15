@@ -40,4 +40,21 @@ public class License {
     public void setCreated(Date created) {
         this.created = created;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        License license = (License) o;
+        return code.equals(license.code);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(owner, model, code, created);
+    }
 }
