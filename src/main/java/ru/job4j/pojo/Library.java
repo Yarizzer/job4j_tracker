@@ -23,7 +23,7 @@ public class Library {
         books[0] = books[3];
         books[3] = tmp;
         for (Book book : books) {
-            if (book.getTitle().equals("Clean code")) {
+            if ("Clean code".equals(book.getTitle())) {
                 System.out.println(book.getTitle() + " pages count " + book.getPagesCount());
             }
         }
