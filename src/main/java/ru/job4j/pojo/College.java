@@ -8,6 +8,6 @@ public class College {
         st.setFullName("Carabas Barabas Barabasovich");
         st.setGroup(0);
         st.setEnrollmentDate(new Date());
-        System.out.println(st.getFullName() + " " + st.getGroup() + " " +st.getEnrollmentDate());
+        System.out.println(st.getFullName() + " " + st.getGroup() + " " + st.getEnrollmentDate());
     }
 }
