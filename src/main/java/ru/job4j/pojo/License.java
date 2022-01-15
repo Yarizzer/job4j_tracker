@@ -55,6 +55,6 @@ public class License {
 
     @Override
     public int hashCode() {
-        return Objects.hash(owner, model, code, created);
+        return Objects.hash(code);
     }
 }
