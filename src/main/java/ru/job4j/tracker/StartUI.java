@@ -78,8 +78,9 @@ public class StartUI {
                     System.out.println("Заявки с именем: " + name + " не найдены.");
                 }
             } else if (select == 6) {
-                run = false;
+                String plug = "Plug to make unique commit";
             }
+            run = false;
         }
     }
 
