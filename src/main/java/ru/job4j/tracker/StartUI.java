@@ -7,8 +7,7 @@ public class StartUI {
         boolean run = true;
         while (run) {
             showMenu();
-            System.out.print("Select: ");
-            int select = Integer.parseInt(scanner.nextLine());
+            int select = requestInput(scanner);
             if (select == 0) {
                 createItemRequest(scanner, tracker);
             } else if (select == 1) {
@@ -17,6 +16,8 @@ public class StartUI {
                 replaceRequest(scanner, tracker);
             } else if (select == 3) {
                 deleteRequest(scanner, tracker);
+            } else if (select == 4) {
+                getItemWithIdRequest(scanner, tracker);
             } else if (select == 6) {
                 run = false;
             }
@@ -69,6 +70,18 @@ public class StartUI {
         }
     }
 
+    private void getItemWithIdRequest(Scanner scanner, Tracker tracker) {
+        System.out.println("=== Find item by id ===");
+        System.out.print("Enter id: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        Item item = tracker.findById(id);
+        if (item != null) {
+            System.out.println(item);
+        } else {
+            System.out.println("Заявка с введенным id: " + id + " не найдена.");
+        }
+    }
+
     private void showMenu() {
         String[] menu = {
                 "Add new Item", "Show all items", "Edit item",
@@ -79,6 +92,11 @@ public class StartUI {
         for (int i = 0; i < menu.length; i++) {
             System.out.println(i + ". " + menu[i]);
         }
+    }
+
+    private int requestInput(Scanner scanner) {
+        System.out.print("Select: ");
+        return Integer.parseInt(scanner.nextLine());
     }
 
     public static void main(String[] args) {
