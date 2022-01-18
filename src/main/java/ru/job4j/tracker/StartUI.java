@@ -15,6 +15,8 @@ public class StartUI {
                 printItemsRequest(scanner, tracker);
             } else if (select == 2) {
                 replaceRequest(scanner, tracker);
+            } else if (select == 3) {
+                deleteRequest(scanner, tracker);
             } else if (select == 6) {
                 run = false;
             }
@@ -53,6 +55,17 @@ public class StartUI {
             System.out.println("Заявка изменена успешно.");
         } else {
             System.out.println("Ошибка замены заявки.");
+        }
+    }
+
+    private void deleteRequest(Scanner scanner, Tracker tracker) {
+        System.out.println("=== Delete item ===");
+        System.out.print("Enter id: ");
+        int id = Integer.parseInt(scanner.nextLine());
+        if (tracker.delete(id)) {
+            System.out.println("Заявка удалена успешно.");
+        } else {
+            System.out.println("Ошибка удаления заявки.");
         }
     }
 
