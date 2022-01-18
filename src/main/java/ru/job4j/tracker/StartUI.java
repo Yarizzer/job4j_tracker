@@ -3,37 +3,37 @@ package ru.job4j.tracker;
 import java.util.Scanner;
 
 public class StartUI {
-    public void init(Scanner scanner, Tracker tracker) {
+    private Scanner scanner = new Scanner(System.in);
+    private Tracker tracker = new Tracker();
+
+    public void init() {
         boolean run = true;
         while (run) {
             showMenu();
-            int select = requestInput(scanner);
-            if (select == 0) {
-                createItemRequest(scanner, tracker);
-            } else if (select == 1) {
-                printItemsRequest(scanner, tracker);
-            } else if (select == 2) {
-                replaceRequest(scanner, tracker);
-            } else if (select == 3) {
-                deleteRequest(scanner, tracker);
-            } else if (select == 4) {
-                getItemWithIdRequest(scanner, tracker);
-            } else if (select == 6) {
-                run = false;
-            }
+            run = switch (requestInput()) {
+                case 0 -> createItemRequest();
+                case 1 -> printItemsRequest();
+                case 2 -> replaceRequest();
+                case 3 -> deleteRequest();
+                case 4 -> getItemWithIdRequest();
+                case 5 -> printItemWithName();
+                case 6 -> performQuit();
+                default -> true;
+            };
         }
     }
 
-    private void createItemRequest(Scanner scanner, Tracker tracker) {
+    private boolean createItemRequest() {
         System.out.println("=== Create a new Item ===");
         System.out.print("Enter name: ");
         String name = scanner.nextLine();
         Item item = new Item(name);
         tracker.add(item);
         System.out.println("Добавленная заявка: " + item);
+        return true;
     }
 
-    private void printItemsRequest(Scanner scanner, Tracker tracker) {
+    private boolean printItemsRequest() {
         System.out.println("=== Show all items ===");
         Item[] items = tracker.findAll();
         if (items.length > 0) {
@@ -43,9 +43,10 @@ public class StartUI {
         } else {
             System.out.println("Хранилище еще не содержит заявок");
         }
+        return true;
     }
 
-    private void replaceRequest(Scanner scanner, Tracker tracker) {
+    private boolean replaceRequest() {
         System.out.println("=== Edit item ===");
         System.out.print("Enter id: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -57,9 +58,10 @@ public class StartUI {
         } else {
             System.out.println("Ошибка замены заявки.");
         }
+        return true;
     }
 
-    private void deleteRequest(Scanner scanner, Tracker tracker) {
+    private boolean deleteRequest() {
         System.out.println("=== Delete item ===");
         System.out.print("Enter id: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -68,9 +70,10 @@ public class StartUI {
         } else {
             System.out.println("Ошибка удаления заявки.");
         }
+        return true;
     }
 
-    private void getItemWithIdRequest(Scanner scanner, Tracker tracker) {
+    private boolean getItemWithIdRequest() {
         System.out.println("=== Find item by id ===");
         System.out.print("Enter id: ");
         int id = Integer.parseInt(scanner.nextLine());
@@ -80,6 +83,26 @@ public class StartUI {
         } else {
             System.out.println("Заявка с введенным id: " + id + " не найдена.");
         }
+        return true;
+    }
+
+    private boolean printItemWithName() {
+        System.out.println("=== Find items by name ===");
+        System.out.print("Enter name: ");
+        String name = scanner.nextLine();
+        Item[] items = tracker.findByName(name);
+        if (items.length > 0) {
+            for (Item item : items) {
+                System.out.println(item);
+            }
+        } else {
+            System.out.println("Заявки с именем: " + name + " не найдены.");
+        }
+        return true;
+    }
+
+    private boolean performQuit() {
+        return false;
     }
 
     private void showMenu() {
@@ -94,14 +117,12 @@ public class StartUI {
         }
     }
 
-    private int requestInput(Scanner scanner) {
+    private int requestInput() {
         System.out.print("Select: ");
         return Integer.parseInt(scanner.nextLine());
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Tracker tracker = new Tracker();
-        new StartUI().init(scanner, tracker);
+        new StartUI().init();
     }
 }
