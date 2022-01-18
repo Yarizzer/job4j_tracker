@@ -30,8 +30,8 @@ public class Matches {
             } else {
                 count -= matches;
                 System.out.println("Всего остаток " + count);
+                turn = !turn;
             }
-            turn = !turn;
         }
         printWinner(turn);
     }
