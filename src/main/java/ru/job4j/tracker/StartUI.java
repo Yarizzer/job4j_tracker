@@ -3,8 +3,6 @@ package ru.job4j.tracker;
 import java.util.Scanner;
 
 public class StartUI {
-    private Scanner scanner;
-
     public void init(Scanner scanner, Tracker tracker) {
         boolean run = true;
         while (run) {
