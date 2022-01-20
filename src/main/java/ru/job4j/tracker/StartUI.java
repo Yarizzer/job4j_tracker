@@ -1,7 +1,7 @@
 package ru.job4j.tracker;
 
 public class StartUI {
-    public static void showMenu() {
+    private void showMenu() {
         String[] menu = {
                 "Add new Item", "Show all items", "Edit item",
                 "Delete item", "Find item by id", "Find items by name",
