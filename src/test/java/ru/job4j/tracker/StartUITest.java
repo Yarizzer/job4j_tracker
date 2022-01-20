@@ -41,7 +41,6 @@ public class StartUITest {
                 new DeleteItemAction(),
                 new QuitAction()
         };
-
         new StartUI().init(input, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
