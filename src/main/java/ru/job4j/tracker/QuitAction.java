@@ -9,7 +9,7 @@ public class QuitAction implements UserAction {
 
     @Override
     public String name() {
-        return "Quit action";
+        return "Quit";
     }
 
     @Override
