@@ -14,11 +14,10 @@ public class CreateAction implements UserAction {
 
     @Override
     public boolean execute(Input input, Tracker tracker) {
-        System.out.println("=== Create a new Item ===");
-        String name = input.askStr("Enter name: ");
-        Item item = new Item(name);
+        out.println("=== Create a new Item ====");
+        Item item = new Item(input.askStr("Enter name: "));
         tracker.add(item);
-        System.out.println("Добавленная заявка: " + item);
+        out.println("Добавлена заявка: " + item);
         return true;
     }
 }
