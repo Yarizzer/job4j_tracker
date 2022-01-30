@@ -15,12 +15,24 @@ public class FindEl {
         return rsl;
     }
 
-    public static void main(String[] args) {
-        String[] test = new String[] {"One", "Two", "Three"};
+    public static boolean sent(String value, String[] abuses) throws ElementAbuseException {
+        /* if contains throw ElementAbuseException */
+        return true;
+    }
+
+    public static void process(String[] values, String key, String[] abuses) {
         try {
-            indexOf(test, "Four");
-        } catch (ElementNotFoundException err) {
-            err.printStackTrace();
+            if (indexOf(values, key) != -1) {
+                sent(key, abuses);
+            }
+        } catch (ElementAbuseException ea) {
+            ea.printStackTrace();
+        } catch (ElementNotFoundException en) {
+            en.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } catch (Throwable th) {
+            th.printStackTrace();
         }
     }
 }
