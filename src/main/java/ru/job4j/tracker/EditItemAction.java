@@ -17,7 +17,11 @@ public class EditItemAction implements UserAction {
         out.println("=== Edit item ===");
         int id = input.askInt("Enter id: ");
         Item item = new Item(input.askStr("Enter name: "));
-        out.println(tracker.replace(id, item) ? "Заявка изменена успешно." : "Ошибка замены заявки.");
+        if (tracker.replace(id, item)) {
+            out.println("Заявка изменена успешно.");
+        } else {
+            out.println("Ошибка замены заявки.");
+        }
         return true;
     }
 }

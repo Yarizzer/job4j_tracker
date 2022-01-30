@@ -16,7 +16,11 @@ public class DeleteItemAction implements UserAction {
     public boolean execute(Input input, Tracker tracker) {
         out.println("=== Delete item ===");
         int id = input.askInt("Enter id: ");
-        out.println(tracker.delete(id) ? "Заявка удалена успешно." : "Ошибка удаления заявки.");
+        if (tracker.delete(id)) {
+            out.println("Заявка удалена успешно.");
+        } else {
+            out.println("Ошибка удаления заявки.");
+        }
         return true;
     }
 }
