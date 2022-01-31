@@ -17,6 +17,11 @@ public class FindEl {
 
     public static boolean sent(String value, String[] abuses) throws ElementAbuseException {
         /* if contains throw ElementAbuseException */
+        for (String item : abuses) {
+            if (value.equals(item)) {
+                throw new ElementAbuseException("abuses contains " + value);
+            }
+        }
         return true;
     }
 
