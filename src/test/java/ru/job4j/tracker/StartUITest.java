@@ -2,6 +2,9 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
@@ -12,10 +15,9 @@ public class StartUITest {
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0", "Item name", "1"});
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new CreateAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new CreateAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findAll().get(0).getName(), is("Item name"));
     }
@@ -26,10 +28,9 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("Replaced item"));
         Input input = new StubInput(new String[] {"0", String.valueOf(item.getId()), "New item name", "1"});
-        UserAction[] actions = {
-                new EditItemAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new EditItemAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is("New item name"));
     }
@@ -40,10 +41,9 @@ public class StartUITest {
         Item item = tracker.add(new Item("ItemToDelete"));
         Output out = new StubOutput();
         Input input = new StubInput(new String[] {"0", String.valueOf(item.getId()), "1"});
-        UserAction[] actions = {
-                new DeleteItemAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new DeleteItemAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(input, tracker, actions);
         assertThat(tracker.findById(item.getId()), is(nullValue()));
     }
@@ -55,9 +55,8 @@ public class StartUITest {
                 new String[] {"0"}
         );
         Tracker tracker = new Tracker();
-        UserAction[] actions = {
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu:" + System.lineSeparator()
@@ -74,10 +73,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(one.getId()), replaceName, "1"}
         );
-        UserAction[] actions = new UserAction[]{
-                new EditItemAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new EditItemAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -102,10 +100,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", "1"}
         );
-        UserAction[] actions = new UserAction[]{
-                new ShowAllItemsAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new ShowAllItemsAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -130,10 +127,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", item.getName(), "1"}
         );
-        UserAction[] actions = new UserAction[]{
-                new FindItemByNameAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindItemByNameAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -156,10 +152,9 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", String.valueOf(item.getId()), "1"}
         );
-        UserAction[] actions = new UserAction[]{
-                new FindItemByIdAction(out),
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new FindItemByIdAction(out));
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
@@ -181,9 +176,8 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"1", "0"}
         );
-        UserAction[] actions = new UserAction[]{
-                new QuitAction(out)
-        };
+        List<UserAction> actions = new ArrayList<>();
+        actions.add(new QuitAction(out));
         new StartUI(out).init(in, tracker, actions);
         String ln = System.lineSeparator();
         assertThat(out.toString(), is(
