@@ -33,7 +33,7 @@ public class StringCompareTest {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
                 "Ivanova",
-                "Petrov"
+                "Ivan"
         );
         assertThat(rst, greaterThan(0));
     }
