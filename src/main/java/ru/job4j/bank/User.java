@@ -2,8 +2,21 @@ package ru.job4j.bank;
 
 import java.util.Objects;
 
+/**
+ * Класс описывает работу объекта пользователя сервиса
+ * @author YAROSLAV ABATUROV
+ * @version 1.0
+ */
+
 public class User {
+    /**
+     * Значение паспорта пользователя
+     */
     private String passport;
+
+    /**
+     * Значение имени пользователя
+     */
     private String username;
 
     public User(String passport, String username) {
@@ -11,6 +24,9 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Геттеры и сеттеры полей класса
+     */
     public String getPassport() {
         return passport;
     }
@@ -27,6 +43,9 @@ public class User {
         this.username = username;
     }
 
+    /**
+     * Переопределяем методы hashCode() и equals(), что бы они корректно работали и учитывая данные объекта
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
