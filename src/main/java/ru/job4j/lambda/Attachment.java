@@ -27,7 +27,7 @@ public class Attachment {
                 + '}';
     }
 
-    Comparator<Attachment> compar = new Comparator<Attachment>() {
+    Comparator<Attachment> c = new Comparator<Attachment>() {
         @Override
         public int compare(Attachment o1, Attachment o2) {
             return o1.getName().compareTo(o2.getName());
