@@ -22,7 +22,7 @@ public class StringCompareTest {
     public void whenLeftLessThanRightResultShouldBeNegative() {
         StringCompare compare = new StringCompare();
         int rst = compare.compare(
-                "Ivanov",
+                "Ivan",
                 "Ivanova"
         );
         assertThat(rst, lessThan(0));
