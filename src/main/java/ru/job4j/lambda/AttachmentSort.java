@@ -11,7 +11,7 @@ public class AttachmentSort {
                 new Attachment("image 2", 34),
                 new Attachment("image 3", 13)
         );
-        attachments.sort(new AttachmentComp().main());
+        attachments.sort(AttachmentComp.main());
         System.out.println(attachments);
         Comparator<Attachment> comp = new Comparator<Attachment>() {
             @Override
