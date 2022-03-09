@@ -1,7 +1,6 @@
 package ru.job4j.lambda;
 
 import java.util.Comparator;
-import java.util.List;
 
 public class AttachmentComp {
     public static Comparator main() {
