@@ -59,15 +59,11 @@ public class BankService {
      * @return возвращает найденное значение счёта
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
-        var user = findByPassport(passport);
-        Optional<Account>  rsl = Optional.empty();
-        if (user.isPresent()) {
-            rsl = users.get(user.get())
-                    .stream()
-                    .filter(v -> v.getRequisite().equals(requisite))
-                    .findFirst();
-        }
-        return rsl;
+        return findByPassport(passport)
+                .flatMap(u -> users.get(u)
+                        .stream()
+                        .filter(v -> v.getRequisite().equals(requisite))
+                        .findFirst());
     }
 
     /**
@@ -87,7 +83,7 @@ public class BankService {
         boolean rsl = false;
         var srcAccount = findByRequisite(srcPassport, srcRequisite);
         var destAccount = findByRequisite(destPassport, destRequisite);
-        if (srcAccount != null && destAccount != null && srcAccount.get().getBalance() >= amount) {
+        if (srcAccount.isPresent() && destAccount.isPresent() && srcAccount.get().getBalance() >= amount) {
             srcAccount.get().setBalance(srcAccount.get().getBalance() - amount);
             destAccount.get().setBalance(destAccount.get().getBalance() + amount);
             rsl = true;
