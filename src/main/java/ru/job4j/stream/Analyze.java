@@ -3,6 +3,7 @@ package ru.job4j.stream;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.Comparator;
 
 public class Analyze {
     public static double averageScore(Stream<Pupil> stream) {
@@ -45,7 +46,7 @@ public class Analyze {
                             .sum();
                     return new Tuple(v.getName(), score);
                 })
-                .max((item1, item2) -> Double.compare(item1.getScore(), item2.getScore()))
+                .max(Comparator.comparingDouble(v -> v.getScore()))
                 .orElse(new Tuple("Empty", 0));
     }
 
@@ -58,7 +59,7 @@ public class Analyze {
                 ))
                 .entrySet().stream()
                 .map(e -> new Tuple(e.getKey(), e.getValue()))
-                .max((item1, item2) -> Double.compare(item1.getScore(), item2.getScore()))
+                .max(Comparator.comparingDouble(v -> v.getScore()))
                 .orElse(new Tuple("Empty", 0));
     }
 }
